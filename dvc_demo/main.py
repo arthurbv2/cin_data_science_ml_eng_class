@@ -2,6 +2,7 @@ if __name__ == "__main__":
 
     from nodes.data_acquisition_node import DataAcquisitionNode
     from nodes.data_formatting_node import DataFormattingNode
+    from nodes.data_preparation import DataPreprocessing
 
     """
     queries = [
@@ -21,7 +22,10 @@ if __name__ == "__main__":
 
     data_node = DataAcquisitionNode(queries)
     data_node.execute()
-    """
 
     dfn = DataFormattingNode(dataset_path=f'dataset/23_28_13')
     dfn.execute()
+    """
+
+    data_preparation = DataPreprocessing('dataset/refined/21_57_15/data.csv')
+    data_preparation.execute()
