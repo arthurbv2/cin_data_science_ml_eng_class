@@ -49,7 +49,7 @@ class DataPreprocessing:
 
         start_date = datetime.now().strftime('%H_%M_%S')
 
-        Path(f"dataset/pre_processed/{start_date}").mkdir(parents=True, exist_ok=True)
+        Path(f"database/pre_processed/{start_date}").mkdir(parents=True, exist_ok=True)
 
-        dump_svmlight_file(X=instances, y=label, query_id=qids, f=f"dataset/pre_processed/{start_date}/data.txt")
+        dump_svmlight_file(X=instances, y=label, query_id=qids, f=f"database/pre_processed/{start_date}/data.txt")
 

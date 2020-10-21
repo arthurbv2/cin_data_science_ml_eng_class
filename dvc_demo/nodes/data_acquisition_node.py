@@ -20,7 +20,7 @@ class DataAcquisitionNode:
     def execute(self):
         start_date = datetime.now().strftime('%H_%M_%S')
 
-        Path(f"raw/dataset/{start_date}").mkdir(parents=True, exist_ok=True)
+        Path(f"database/raw/{start_date}").mkdir(parents=True, exist_ok=True)
 
         for query in self.queries:
             result = self.retrieve_products(query)
