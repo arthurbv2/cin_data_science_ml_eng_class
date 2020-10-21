@@ -4,6 +4,7 @@ if __name__ == "__main__":
     from nodes.data_formatting_node import DataFormattingNode
     from nodes.data_preparation import DataPreprocessing
     from nodes.train_test_split_node import TrainTestSplitNode
+    from nodes.training_node import TrainingNode
 
     """
     queries = [
@@ -29,8 +30,11 @@ if __name__ == "__main__":
 
     data_preparation = DataPreprocessing('database/refined/21_57_15/data.csv')
     data_preparation.execute()
-    """
 
     ttsn = TrainTestSplitNode(dataset_path='database/pre_processed/22_53_16/data.txt')
     ttsn.execute()
+    """
+
+    tn = TrainingNode(dataset_path='database/datasets/01_29_08/', algorithm_id=2, alpha=1.5)
+    print(tn.execute())
 
