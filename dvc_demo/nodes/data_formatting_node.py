@@ -62,7 +62,7 @@ class DataFormattingNode:
 
     def execute(self):
         start_date = datetime.now().strftime('%H_%M_%S')
-        path = f"dataset/refined/{start_date}"
+        path = f"database/refined/{start_date}"
         Path(path).mkdir(parents=True, exist_ok=True)
         files_paths = glob(f"{self.dataset_path}/*.json")
         instances = self.extract_queries_data(files_paths=files_paths)
