@@ -1,5 +1,7 @@
 from json import load
 from glob import glob
+from pathlib import Path
+from datetime import datetime
 
 from pandas import DataFrame
 
@@ -59,10 +61,13 @@ class DataFormattingNode:
         return instances
 
     def execute(self):
+        start_date = datetime.now().strftime('%H_%M_%S')
+        path = f"dataset/refined/{start_date}"
+        Path(path).mkdir(parents=True, exist_ok=True)
         files_paths = glob(f"{self.dataset_path}/*.json")
         instances = self.extract_queries_data(files_paths=files_paths)
         df = DataFrame(instances)
-        df.to_csv('refined.csv')
+        df.to_csv(f'{path}/data.csv')
 
 
 
