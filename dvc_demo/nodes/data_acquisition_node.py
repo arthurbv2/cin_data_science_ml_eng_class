@@ -1,29 +1,32 @@
 import json
+import yaml
 from requests import get
 from pathlib import Path
-from datetime import datetime
 
 
-class DataAcquisitionNode:
+def retrieve_products(query: str):
+    results = []
+    print(f'Retrieving {query} products.')
+    for offset in [0, 50, 100, 200]:
+        response = get(f"https://api.mercadolibre.com/sites/MLB/search?offset={offset}&q={query}")
+        results.append(response.json())
+    return results
 
-    def __init__(self, queries: list):
-        self.queries = queries
 
-    @staticmethod
-    def retrieve_products(query: str):
-        results = []
-        for offset in [0, 50, 100, 200]:
-            response = get(f"https://api.mercadolibre.com/sites/MLB/search?offset={offset}&q={query}")
-            results.append(response.json())
-        return results
+def execute():
 
-    def execute(self):
-        start_date = datetime.now().strftime('%H_%M_%S')
+    params = yaml.safe_load(open('params.yaml'))['data_collection']
 
-        Path(f"database/raw/{start_date}").mkdir(parents=True, exist_ok=True)
+    raw_data_path = f"database/raw/"
 
-        for query in self.queries:
-            result = self.retrieve_products(query)
+    Path(raw_data_path).mkdir(parents=True, exist_ok=True)
 
-            with open(f'dataset/{start_date}/{query}_data.json', 'w') as fp:
-                fp.write(json.dumps(result))
+    for query in params['queries']:
+        result = retrieve_products(query)
+
+        with open(f'{raw_data_path}/{query}_data.json', 'w') as fp:
+            fp.write(json.dumps(result))
+
+
+if __name__ == "__main__":
+    execute()
