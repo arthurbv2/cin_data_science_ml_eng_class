@@ -1,0 +1,32 @@
+stages:
+  data_collection:
+    cmd: python3 dvc_demo/nodes/data_acquisition_node.py -p data_collection.queries
+      -o database/raw
+    deps:
+    - dvc_demo/nodes/data_acquisition_node.py
+  data_refining:
+    cmd: python3 dvc_demo/nodes/data_formatting_node.py database/raw -o database/refined
+    deps:
+    - database/raw
+    - dvc_demo/nodes/data_formatting_node.py
+  data_preparation:
+    cmd: python3 dvc_demo/nodes/data_preparation.py database/refined/data.csv -o database/pre_processed/data.txt
+    deps:
+    - database/refined/data.csv
+    - dvc_demo/nodes/data_preparation.py
+  data_splitting:
+    cmd: python3 dvc_demo/nodes/train_test_split_node.py database/pre_processed/data.txt
+      -o database/dataset
+    deps:
+    - database/pre_processed/data.txt
+    - dvc_demo/nodes/train_test_split_node.py
+    params:
+    - data_splitting.test_size
+  training:
+    cmd: python3 dvc_demo/nodes/training_node.py database/dataset -o database/models/start_date.pkl
+    deps:
+    - database/dataset/
+    - dvc_demo/nodes/training_node.py
+    params:
+    - training.algorithm_id
+    - training.alpha

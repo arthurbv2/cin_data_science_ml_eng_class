@@ -1,0 +1,25 @@
+data_collection:
+
+  queries: [ 'geladeira', 'iphone', 'iphone xr', 'samsung galaxy', 'smartv', 'blu-ray', 'guarda roupa', 'cama',
+             'camera', 'sofá', 'mesa de jantar', 'tenis adidas', 'tenis vans', 'camiseta adidas', 'short masculino',
+             'short feminino', 'oculos de sol', 'cadeira gamer', 'notebook asus', 'macbook', 'mac', 'alcool em gel',
+             'kit de mascara', 'alcool 70', 'notebook', 'pc gamer', 'gin tanqueray', 'vodka', 'celular', 'celulares',
+             'smartphone', 'iphone 7', 'raquete de tenis de mesa', 'fogão', 'whisky', 'quadro branco', 'escrivaninha',
+             'toalhas de banho', 'pano de chão', 'ferro de passar', 'liquidificador', 'ps4', 'xbox', 'controle playstation',
+             'mochila de viagem', 'bola de basquete', 'bola de basquete wilson', 'notebook lenovo', 'máquina de lavar',
+             'xiaomi', 'xiomi', 'xaomi', 'ifone', 'controle universal de tv', 'chaveiro', 'headphone', 'headset',
+             'fone de ouvido',
+             'headset gamer', 'headset bluetooth', 'teclado', 'teclado mecanico', 'smartphone samsung', 'dvd player',
+             'vitrola', 'vinho', 'mouse', 'mouse sem fio', 'teclado sem fio', 'guarda chuva', 'chuteira', 'jogo de copos',
+             'jogo de taças', 'fogão 4 bocas', 'fogão 6 bocas', 'vaso sanitario', 'box para banheiro' ]
+
+data_splitting:
+
+  test_size: 0.3
+
+training:
+
+  algorithm_id: 1
+  alpha: 2.5
+
+
